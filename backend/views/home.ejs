@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Home - Course Rating System</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <%- include('partials/nav') %>
+  <main class="box wide">
+    <h1>Welcome, <%= user.name %></h1>
+    <p>Your role: <b><%= user.role %></b></p>
+
+    <% if (user.role === 'guest') { %>
+      <p>Guests can view courses and reviews only.</p>
+    <% } else if (user.role === 'user') { %>
+      <p>You can view courses and write reviews.</p>
+    <% } else { %>
+      <p>You can view, write, and manage everything.</p>
+    <% } %>
+  </main>
+</body>
+</html>
