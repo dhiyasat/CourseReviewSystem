@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin - Course Rating System</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <%- include('partials/nav') %>
+  <main class="box wide">
+    <h1>Admin: All Accounts</h1>
+    <p>Only admins can open this page.</p>
+    <table>
+      <tr><th>Student ID</th><th>Email</th><th>Name</th><th>Role</th></tr>
+      <% students.forEach(s => { %>
+        <tr>
+          <td><%= s.studentID %></td>
+          <td><%= s.email %></td>
+          <td><%= s.displayName %></td>
+          <td><%= s.role %></td>
+        </tr>
+      <% }) %>
+    </table>
+  </main>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Log in - Course Rating System</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="box">
+    <h1>Course Rating System</h1>
+
+    <% if (error) { %><p class="error"><%= error %></p><% } %>
+
+    <form method="post" action="/login" id="loginForm">
+      <label>Email</label>
+      <input type="email" name="email" id="email">
+      <label>Password</label>
+      <input type="password" name="password" id="password">
+      <button>Log in</button>
+    </form>
+
+    <form method="post" action="/guest">
+      <button class="grey">Continue as guest</button>
+    </form>
+  </main>
+
+  <script>
+    // Check the form before sending it
+    document.getElementById('loginForm').onsubmit = function () {
+      const email = document.getElementById('email').value;
+      const password = document.getElementById('password').value;
+      if (!email || !password) {
+        alert('Please enter your email and password.');
+        return false;
+      }
+    };
+  </script>
+</body>
+</html>
