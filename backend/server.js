@@ -1,4 +1,5 @@
 
+const path = require('path');
 const express = require('express');
 const reviewRoutes = require('./routes/reviews');
 const courseRoutes = require('./routes/courses');
@@ -10,8 +11,9 @@ const app = express();
 const PORT = 3000;
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, '..', 'frontend')));
 
-// Register review routes
+// Registers routes
 app.use((req, res, next) => {
     console.log('Incoming request:', req.method, req.url);
     next();
@@ -20,11 +22,6 @@ app.use((req, res, next) => {
 app.use('/reviews', reviewRoutes);
 app.use('/courses', courseRoutes);
 app.use('/weather', weatherRoutes);
-
-// Homepage
-app.get('/', (req, res) => {
-    res.send('Course Review API is running!');
-});
 
 // Test database connection
 app.get('/test-db', async (req, res) => {

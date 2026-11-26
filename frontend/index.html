@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Review API</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header>
+        <h1>Course Review API</h1>
+        <p>Backend API Demo Dashboard</p>
+    </header>
+
+    <main>
+
+        <!-- Weather API -->
+        <section class="dashboard-section">
+            <h2>Weather API</h2>
+            <p>Fetchs weather information from OpenWeatherMap.</p>
+
+            <input type="text" id="cityInput" placeholder="Enter a city">
+            <button id="fetchWeatherBtn">Fetch Weather</button>
+
+            <div id="weatherResult"></div>
+
+            <h3>Saved Weather Records</h3>
+            <div id="weatherRecords"></div>
+        </section>
+
+        <!-- Courses API -->
+        <section class="dashboard-section">
+            <h2>Courses</h2>
+            <p>View and manage course information.</p>
+
+            <div id="coursesList"></div>
+        </section>
+
+        <!-- Reviews API -->
+        <section class="dashboard-section">
+            <h2>Reviews</h2>
+            <p>View reviews and course rating statistics.</p>
+
+            <div id="reviewStats"></div>
+            <div id="reviewsList"></div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
