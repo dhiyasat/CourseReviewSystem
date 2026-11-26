@@ -1,4 +1,5 @@
 
+const path = require('path');
 const express = require('express');
 const session = require('express-session');
 const bcrypt = require('bcryptjs');
@@ -15,7 +16,8 @@ const PORT = 3000;
 app.set('view engine', 'ejs');                     // pages in views/*.ejs
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));  // HTML form data (login form)
-app.use(express.static('public'));                 // style.css
+app.use(express.static('public'));                 // style.css (login pages)
+app.use(express.static(path.join(__dirname, '..', 'frontend')));   // teammate's demo frontend
 
 // ---------- Sessions (Step 2: login) ----------
 app.use(session({
@@ -35,7 +37,7 @@ app.use((req, res, next) => {
     next();
 });
 
-// Register review routes
+// Registers routes
 app.use((req, res, next) => {
     console.log('Incoming request:', req.method, req.url);
     next();
@@ -46,11 +48,6 @@ app.use((req, res, next) => {
 app.use('/reviews', apiAccess({ GET: ['admin', 'user', 'guest'], POST: ['admin', 'user'], PUT: ['admin', 'user'], DELETE: ['admin'] }), reviewRoutes);
 app.use('/courses', apiAccess({ GET: ['admin', 'user', 'guest'], POST: ['admin'], PUT: ['admin'], DELETE: ['admin'] }), courseRoutes);
 app.use('/weather', apiAccess({ GET: ['admin', 'user', 'guest'], POST: ['admin'], DELETE: ['admin'] }), weatherRoutes);
-
-// Homepage
-app.get('/', (req, res) => {
-    res.send('Course Review API is running!');
-});
 
 // Test database connection
 app.get('/test-db', async (req, res) => {

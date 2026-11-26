@@ -130,14 +130,20 @@ router.post('/', async (req, res) => {
             message: 'Review added successfully.'
         });
 
-    } catch (error) {
-        console.error('POST REVIEW ERROR:', error);
+    } 
+catch (error) {
+    console.error('POST REVIEW ERROR:', error);
 
-        res.status(500).json({
-            error: 'Failed to add review.',
-            details: error.message
+    if (error.code === 'ER_DUP_ENTRY') {
+        return res.status(409).json({
+            error: 'You have already submitted a review for this course.'
         });
     }
+
+    return res.status(500).json({
+        error: 'Failed to add review.'
+    });
+}
 });
 
 // PUT: Update an existing review
